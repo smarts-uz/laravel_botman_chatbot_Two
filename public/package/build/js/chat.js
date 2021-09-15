@@ -727,8 +727,7 @@
                         console.log('Send Request');
 
 
-                        a = function () {
-
+                        var callBack = function (data) {
 
                             setTimeout(function(){
                                 var inputElements = document.querySelectorAll('input.files');
@@ -756,6 +755,9 @@
                              }, 1000);
 
                         };
+
+                        a = callBack;
+
                         console.log('User ID:' + t.userId);
                         console.log('Message:' + e);
                         console.log('Attachment:' + r);
@@ -780,9 +782,6 @@
                                 i &&
                                 e.forEach(function (t) {
                                     i(t);
-
-
-
                                 });
 
 
@@ -790,7 +789,6 @@
                                 var response = t;
 
                                 if (callback) {
-                                    console.log('Response');
                                     callback(response.data);
                                 }
 

@@ -175,17 +175,35 @@ class RealConversation extends Conversation
                 Button::create('Hell no!')->value('no'),
             ]);
 
-        $this->askForImages('Please upload an image.', function ($images) {
+  /*      $this->askForImages('Please upload an image.', function ($images) {
             // $images contains an array with all images.
-        });
+        });*/
 
-        $this->ask($question, function (Answer $answer) {
+        $code = <<<HTML
+
+<input type="file"
+       class="files"
+       name="file3"
+       onchange=""
+       multiple
+       data-allow-reorder="true"
+       data-max-file-size="3MB"
+       data-max-files="3"
+       style="width: 300px !important;"
+       />
+       
+HTML;
+
+
+        $this->say($code);
+
+      /*  $this->ask($question, function (Answer $answer) {
             // Detect if button was clicked:
             if ($answer->isInteractiveMessageReply()) {
                 $selectedValue = $answer->getValue(); // will be either 'yes' or 'no'
                 $selectedText = $answer->getText(); // will be either 'Of course' or 'Hell no!'
             }
-        });
+        });*/
     }
 
     public function askLanguage()

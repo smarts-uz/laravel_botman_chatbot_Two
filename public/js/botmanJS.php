@@ -56,8 +56,8 @@ $conn->close();
 
 echo <<<JS
 var botmanWidget = {
-frameEndpoint: "https://my.agro.uz/package/build/chat.html",
-bubbleAvatarUrl: "https://my.agro.uz/images/logo.png",
+frameEndpoint: "/package/build/chat.html",
+bubbleAvatarUrl: "/images/logo.png",
 aboutLink: "https://agro.uz",
 aboutText: "Powered By Agro.Uz",
 introMessage: `$intro`,

@@ -1207,6 +1207,9 @@ let apps;
                             t.append("eventData", this.props.conf.widgetOpenedEventData),
 
                             r.a.post(this.props.conf.chatServer, t).then(function (t) {
+
+                                console.log('5555');
+
                                 console.log(this.props.conf.chatServer)
                                 (t.data.messages || []).forEach(function (t) {
                                     window.botmanChatWidget.writeToMessages(t);

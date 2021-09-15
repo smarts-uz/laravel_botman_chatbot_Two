@@ -107,34 +107,24 @@
 
 <link rel="stylesheet" type="text/css" href="/package/build/assets/css/chat.css"/>
 
+<script src='/package/build/js/widget.js'></script>
+<script src="/js/botmanJS.php"></script>
 
-<input type="file" id="form" name="file" onchange="" class="custom-file-input" id="chooseFile">
+
 <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet"/>
 
-
-<script src='/package/build/js/widget.js'></script>
-<script>
-
-    @php
-        $chatLogo = setting('chatbot.icon_image');
-$chatLogo = str_replace('\\', '/', $chatLogo);
-          //dd( $chatLogo);
-          //
-        //  $intro = htmlspecialchars(setting('chatbot.ChatIntro'));
-          $intro = setting('chatbot.ChatIntroText');
-    @endphp
-
-    var botmanWidget = {
-        // bubbleBackground: "blue",
-
-        bubbleAvatarUrl: 'https://my.agro.uz/images/logo.png',
-
-        frameEndpoint: "chat.html",
-        introMessage: `{{$intro}}`
-    };
-</script>
+<input type="file"
+       id="form"
+       name="file"
+       onchange=""
+       class="custom-file-input"
+       multiple
+       data-allow-reorder="true"
+       data-max-file-size="3MB"
+       data-max-files="3">
+>
 <script>
     // Get a reference to the file input element
     const inputElement = document.querySelector('input[id="form"]');
@@ -144,7 +134,7 @@ $chatLogo = str_replace('\\', '/', $chatLogo);
 
     FilePond.setOptions({
         server: {
-            url: "/upload",
+            url: "/botman",
             headers: {
                 'X-CSRF-TOKEN': '{{csrf_token()}}'
             }

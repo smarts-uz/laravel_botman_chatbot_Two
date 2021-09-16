@@ -726,14 +726,14 @@
                     this.callAPI = function (e, n, r, i, a) {
                         console.log('Send Request');
 
-
                         var callBack = function (data) {
+
+                            console.log('CallBack');
 
                             setTimeout(function(){
                                 var inputElements = document.querySelectorAll('input.files');
 
-                                console.log(inputElements);
-                                console.log(FilePond);
+                               // console.log(inputElements);
 
                                 // loop over input elements
                                 Array.from(inputElements).forEach(inputElement => {

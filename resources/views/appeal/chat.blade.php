@@ -216,8 +216,8 @@
         padding: 5px 0;
     }
 
-    .right .wrap .block .btn {
-        padding: 5px 10px;
+    .right .wrap .block .btn, .wrap1 .block .btn {
+        padding: 5px 5px;
         font-size: 14px;
         line-height: 1.5;
         border-radius: 3px;
@@ -236,16 +236,37 @@
         display: block;
     }
     .right .wrap .block p {
-        font-size: 18px;
-        padding: 10px 0;
+        font-size: 14px;
+        padding: 4px 0;
     }
     .right{
         margin-top: 53px;
         height: 100vh;
     }
+
+    .wrap1 {
+        position: fixed;
+        top: 54px;
+        right: 60px;
+        opacity: 0;
+    }
+    .wrap1 .block .btn{
+        padding: 0 4px;
+    }
+
+
+    
+
     @media screen and (min-width: 300px) and (max-width: 900px) {
   .right { display: none;}   /* hide it elsewhere */
+  .wrap1 {
+      opacity: 1;
+  }
 }
+@media screen and (min-width: 300px) and (max-width: 900px) {
+  .buttonDis { display: show;} 
+
+    /* hide it elsewhere */}
 
 
 
@@ -269,6 +290,7 @@
                 </div>
             </header>
             <main class="msger-chat">
+
                 @foreach ($conversations as $conversation)
                 {{-- @dd($conversation); --}}
                 @php
@@ -306,7 +328,7 @@
                 </div>
                 <div class="block">
                     <span>Запрашивающий</span>
-                    <p>{{ $user->name }} </p>
+                    <p>{{ $user }} </p>
                 </div>
                 <div class="block">
                     <span>Область</span>
@@ -332,11 +354,25 @@
                     </form>
                 </div>
                 @else
-                    <button type="button" class="btn disabled">Закрыть тикет</button>
+                    <button type="button" class="btn disabled buttonDis">Закрыть тикет</button>
                 @endif
             </div>
         </div>
+        
     </div>
+
+    <div class="wrap1">
+                @if($appeal->is_closed == 0)
+                <div class="block text-center bloc1">
+                    <form action="{{ route('appeal.close', $appeal) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn">Закрыть тикет</button>
+                    </form>
+                </div>
+                @else
+                    <button type="button" class="btn disabled buttonDis">Закрыть тикет</button>
+                @endif
+            </div>
 <script>
  var objDiv = document.querySelector(".msger-chat");
 objDiv.scrollTop = objDiv.scrollHeight;

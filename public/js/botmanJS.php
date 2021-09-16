@@ -1,39 +1,27 @@
 <?php
 // a_local_file.php
+require __DIR__ . '/../../vendor/autoload.php';
 
+// var_dump(__DIR__ . '/../vendor/autoload.php');
+// use Symfony\Component\Dotenv\Dotenv;
+use Dotenv\Dotenv;
 
+// $dotenv = new Dotenv();
+// $dotenv->load(__DIR__.'/.env');
+$dotenv = Dotenv::createImmutable('../../');
+$dotenv->load();
 ob_start();
 Header("content-type: application/javascript");
 ob_end_flush();
-require __DIR__ . '/../../vendor/autoload.php';
+
 // $settings = \Illuminate\Support\Facades\DB::table('settings');
 // $title = $settings->where('key', 'chatbot.chat_title')->first()->value;
-$servername = env("DB_HOST");
-$username = 'root';
-$password = 'root';
-$dbname = 'laravel_agromy';
-
+$servername = $_SERVER['DB_HOST'];
+$username = $_SERVER['DB_USERNAME'];
+$password = $_SERVER['DB_PASSWORD'];
+$dbname = $_SERVER['DB_DATABASE'];
+// var_dump($_ENV);
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-
-/*
- *
- *  @php
-        $chatLogo = setting('chatbot.icon_image');
-$chatLogo = str_replace('\\', '/', $chatLogo);
-          //dd( $chatLogo);
-          //
-        //  $intro = htmlspecialchars(setting('chatbot.ChatIntro'));
-          $intro = setting('chatbot.ChatIntroText');
-    @endphp
-
-    var botmanWidget = {
-        // bubbleBackground: "blue",
-        bubbleAvatarUrl: 'https://my.agro.uz/images/logo.png',
-        frameEndpoint: "chat.html",
-        introMessage: `{{$intro}}`
-    };
- * */
 
 
 $sql = "SELECT * FROM settings";
@@ -56,13 +44,30 @@ $conn->close();
 
 echo <<<JS
 var botmanWidget = {
-frameEndpoint: "/package/build/chat.html",
-bubbleAvatarUrl: "/images/logo.png",
-aboutLink: "https://agro.uz",
-aboutText: "Powered By Agro.Uz",
-introMessage: `$intro`,
-title: `$title`,
-placeholderText: `$placeText`
+            chatServer:"https://my.agro.uz/botman",
+            frameEndpoint: "https://my.agro.uz/package/build/chat.html",
+            bubbleAvatarUrl: "https://my.agro.uz/images/logo.png",
+            timeFormat: "HH:MM",
+            dateTimeFormat: "m/d/yy HH:MM",
+            cookieValidInDays: 1,
+            displayMessageTime: !0,
+            sendWidgetOpenedEvent: !1,
+            widgetOpenedEventData: "",
+            mainColor: "#408591",
+            headerTextColor: "#333",
+            desktopHeight: 450,
+            desktopWidth: 370,
+            mobileHeight: "100%",
+            mobileWidth: "300px",
+            videoHeight: 160,
+            chatId: "",
+            userId: "",
+            alwaysUseFloatingButton: !1,
+            aboutLink: "https://agro.uz",
+            aboutText: "Powered By Agro.Uz",
+            introMessage: `$intro`,
+            title: `$title`,
+            placeholderText: `$placeText`
 };
 
 JS;

@@ -1,9 +1,0 @@
-#container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-div {
-    margin: auto;
-}

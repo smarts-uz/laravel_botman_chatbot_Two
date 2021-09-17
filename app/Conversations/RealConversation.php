@@ -180,18 +180,7 @@ class RealConversation extends Conversation
         });*/
 
         $code = <<<HTML
-
-<input type="file"
-       class="files"
-       name="file3"
-       onchange=""
-       multiple
-       data-allow-reorder="true"
-       data-max-file-size="3MB"
-       data-max-files="3"
-       style="width: 300px !important;"
-       />
-       
+<div class="files"></div>
 HTML;
 
 

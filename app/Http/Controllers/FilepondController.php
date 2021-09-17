@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 
 class FilepondController extends Controller
 {
-    public function upload(Request $request) {
+    public function upload(Request $request)
+    {
 
-        if($request->hasFile('file')) {
+        if ($request->hasFile('file')) {
             $file = $request->file('file');
             $filename = $file->getClientOriginalName();
-            $folder = uniqid().'-'.now()->timestamp;
-            $file->storeAs($folder,$filename);
+            $folder = uniqid() . '-' . now()->timestamp;
+            $file->storeAs($folder, $filename);
 
             return response()->json([
                 "success" => true,
@@ -24,6 +25,6 @@ class FilepondController extends Controller
             "success" => false,
             "message" => "File unsuccessfully uploaded",
         ]);
-        
+
     }
 }

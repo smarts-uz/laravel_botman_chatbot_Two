@@ -1346,34 +1346,6 @@
                     (r.handleKeyPress = function (t) {
                         13 === t.keyCode && r.input.value.replace(/\s/g, "") && (r.say(r.input.value), (r.input.value = ""));
 
-                        if (13 === t.keyCode) {
-
-                            console.log('Send File 33');
-
-
-                            var inputElements = document.querySelectorAll('input.files');
-
-                            console.log(inputElements);
-
-                            // loop over input elements
-                            Array.from(inputElements).forEach(inputElement => {
-
-                                const pond = FilePond.create(inputElement);
-
-                                pond.setOptions({
-                                    server: {
-                                        url: "/botman",
-                                        headers: {
-                                            'X-CSRF-TOKEN': '{{csrf_token()}}'
-                                        }
-                                    }
-                                });
-
-                                console.log(pond.name);
-                            });
-
-                        }
-
                     }),
                         (r.handleSendClick = function () {
                             r.say(r.textarea.value), (r.textarea.value = "");

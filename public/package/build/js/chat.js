@@ -797,7 +797,7 @@
                                             endpoint: '/fileUpload',
                                             fieldName: 'file',
                                             headers: file => ({
-                                                'X-CSRF-TOKEN': '{{csrf_token()}}'
+                                                'X-CSRF-TOKEN': '${csrf_token}'
                                             }),
                                         });
 
